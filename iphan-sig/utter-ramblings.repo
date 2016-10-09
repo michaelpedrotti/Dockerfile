@@ -1,0 +1,6 @@
+[utter-ramblings]
+name=Utter Ramblings
+baseurl=http://yum.jasonlitka.com/EL5/x86_64/
+gpgkey=http://yum.jasonlitka.com/RPM-GPG-KEY-jlitka
+enabled=1
+gpgcheck=1

@@ -1,0 +1,23 @@
+# Acessando este diretório ele deve possuir um arquivo Dockerfile, o qual o build vai procurar as
+# instruções para montar uma imagem customizada
+
+docker build -t jointecnologia/sigiphan:latest .
+
+# A imagem baseada no CentOS foi criada para exibir 
+
+docker images
+
+# Agora devemos criar um container que vai ficar escutando uma porta e vai criar um alias para
+# mapear o diretório do apache dentro do container com o diretório do projeto do sigiphan no
+# seu computador
+
+docker run -it -d -v /var/www/html/sigiphan:/var/www/html -p 80:80 --name sigiphan join/sigiphan:latest /bin/bash
+docker run -it -d -v /var/www/html/sigiphan:/var/www/html -p 8080:80 --name sigiphan join/sigiphan:latest /entrypoint.sh
+
+# Este comando vai criar um container escutando na porta 80 e um redirecionamento para o diretório do projeto
+
+docker ps -a
+
+
+export HELLO_WORLD="Testing export"
+

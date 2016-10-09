@@ -1,0 +1,18 @@
+db:
+  container_name: iphan-sig-db
+  image: postgres:9.2
+  environment:
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: senha
+    POSTGRES_DB: nome_do_banco
+  ports:
+    - "5432:5432"
+www:
+  container_name: iphan-sig-www
+  image: jointecnologia/sigiphan:latest
+  volumes:
+    - .:/var/www/html
+  links:
+    - db
+  ports:
+    - "80:80"  
