@@ -6,7 +6,7 @@ iphan-sig-db:
     POSTGRES_PASSWORD: postgres
     POSTGRES_DB: sigiphan
   ports:
-    - "3306:3306"
+    - "5432:5432"
 iphan-sig-1:
   image: jointecnologia/sigiphan:1
   container_name: iphan-sig-1
