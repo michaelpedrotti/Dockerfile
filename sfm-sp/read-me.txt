@@ -1,0 +1,16 @@
+docker pull centos:6.8
+
+docker build -t jointecnologia/sfmsp:latest .
+
+docker run --name smfsp-mysql -e MYSQL_ROOT_PASSWORD=root -d mysql:5.5
+
+docker run -it -p 80:80 -v /var/www/html:/var/www/html --name jpp jpp:1.0 /entrypoint.sh
+
+docker run -it  -v /var/www/html:/var/www/html --name test centos:6.8 /bin/bash
+
+
+
+http://172.17.0.2/cau/install/index.php
+http://172.17.0.2/cau/install/install.php
+
+$arrStrLink['action-pesquisar']

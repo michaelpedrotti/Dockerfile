@@ -1,0 +1,4 @@
+# Acessando este diretório ele deve possuir um arquivo Dockerfile, o qual o build vai procurar as
+# instruções para montar uma imagem customizada
+
+docker build -t mpog-pgc:latest .
