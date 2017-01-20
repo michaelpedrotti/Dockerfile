@@ -1,6 +1,6 @@
 docker pull centos:6.8
 
-docker build -t jointecnologia/sigiphan:2.0 .
+docker build -t jointecnologia/sigiphan:2 .
 
 
 
