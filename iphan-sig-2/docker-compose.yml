@@ -1,0 +1,49 @@
+iphan-sig-db:
+  container_name: iphan-sig-db
+  image: postgres:9.2
+  environment:
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: postgres
+    POSTGRES_DB: sigiphan
+  ports:
+    - "3306:3306"
+iphan-sig-1:
+  image: jointecnologia/sigiphan:1
+  container_name: iphan-sig-1
+  volumes:
+    - ./old:/var/www/html
+  links:
+    - iphan-sig-db:db
+  ports:
+    - "80:80"
+iphan-sig-2:
+  image: jointecnologia/sigiphan:2
+  container_name: iphan-sig-2
+  environment:
+    APP_ENV: local
+    APP_KEY: "base64:ui78kZOJLMtIoqOcw8TrYRUYHpdOTDeb2owgJm0m7kY="
+    APP_DEBUG: "true"
+    APP_LOG_LEVEL: debug
+    APP_URL: "http://localhost"
+    BROADCAST_DRIVER: "log"
+    CACHE_DRIVER: "file"
+    SESSION_DRIVER: "file"
+    QUEUE_DRIVER: "sync"
+    REDIS_HOST: "127.0.0.1"
+    REDIS_PASSWORD: "null"
+    REDIS_PORT: "6379"
+    MAIL_DRIVER: "smtp"
+    MAIL_HOST: "mailtrap.io"
+    MAIL_PORT: "2525"
+    MAIL_USERNAME: "null"
+    MAIL_PASSWORD: "null"
+    MAIL_ENCRYPTION: "null"
+    PUSHER_APP_ID: ""
+    PUSHER_KEY: ""
+    PUSHER_SECRET: ""
+  volumes:
+    - ./novo:/var/www/html
+  links:
+    - iphan-sig-db:db
+  ports:
+    - "8080:80"

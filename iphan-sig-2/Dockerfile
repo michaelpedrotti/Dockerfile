@@ -10,3 +10,4 @@ RUN mv composer.phar /usr/local/bin/composer
 RUN chmod 0777 /init.sh /usr/local/bin/composer
 EXPOSE 80
 CMD ["/init.sh"]
+
