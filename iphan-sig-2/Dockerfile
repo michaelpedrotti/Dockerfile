@@ -1,13 +1,13 @@
 FROM centos:6.8
 COPY "join.conf" "/etc/httpd/conf.d/join.conf"
 COPY "join.ini" "/etc/php.d/join.ini"
+COPY "artisan.sh" "/usr/local/bin/artisan"
 COPY "init.sh" "/init.sh"
 RUN rpm -Uvh "https://mirror.webtatic.com/yum/el6/latest.rpm"
 RUN yum install -y httpd
 RUN yum install -y php56w php56w-gd php56w-mysql php56w-pdo php56w-soap php56w-xml php56w-xmlrp
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
-RUN chmod 0777 /init.sh /usr/local/bin/composer
+RUN chmod 0777 /init.sh /usr/local/bin/composer /usr/local/bin/artisan
 EXPOSE 80
 CMD ["/init.sh"]
-
