@@ -1,7 +1,7 @@
 #!/bin/bash
 
 /bin/chmod 777 -R /var/www/html/artisan
-/bin/chmod guo+wr -R /var/www/html/storage
+/bin/chmod guo+wr /var/www/html/storage /var/www/html/bootstrap/cache -R
 
 # Instalação
 if [ ! -d "/var/www/html/vendor" ]; then
