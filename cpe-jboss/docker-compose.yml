@@ -1,0 +1,44 @@
+version: "2"
+services:
+  maven:
+    image: "jointecnologia/cpe-maven"
+    volumes:
+      - ./maven-repository:/maven-repository
+  jboss:
+    image: "jointecnologia/cpe-jboss"
+    environment:
+      env: dev
+    volumes:
+#      - ./standalone.xml:/usr/local/jboss/standalone/configuration/standalone.xml
+      - ./CPC/cpc-backend/target/cpc-backend:/usr/local/jboss/standalone/deployments/cpc-backend.war
+      - ./CTT/ctt-backend/target/ctt-backend:/usr/local/jboss/standalone/deployments/ctt-backend.war
+      - ./SGC_PESSOA/pessoa-backend/target/pessoa-backend:/usr/local/jboss/standalone/deployments/pessoa-backend.war
+      - ./SGC_PESSOA/pessoa-web/target/pessoa-web:/usr/local/jboss/standalone/deployments/pessoa-web.war
+      - ./SGE/sge-backend/target/sge-backend:/usr/local/jboss/standalone/deployments/sge-backend.war
+    ports:
+      - "8080:8080" 
+      - "8787:8787"
+#      - "9990:9990"
+    extra_hosts:
+      - "wvta4016:10.244.66.48" # ambiente hotfix
+      - "wvha3028:10.244.66.165" # ambiente homologação
+      - "wvda2015:10.244.65.146" # ambiente desenvolvimento
+      - "wvpi1070:10.244.65.42" # DESCONTINUADO
+      - "wvha3023:10.244.66.160" # ambiente teste
+      - "wvpa1067:10.244.68.8" # ambiente produção
+      - "wvha3033:10.244.66.167" # ambiente homologação 2
+      - "lvdw2004:10.244.67.146" # jboss DEV
+      - "lvha3016:10.244.66.153" # jboss HML
+      - "lvha3034:10.244.66.168" # jboss HML2
+      - "lvta4011:10.244.66.43" # jboss Test
+      - "lvha3032:10.244.66.155" # jboss HOTFIX 
+      - "lvha3014:10.244.66.149" # zim
+      - "WVDB2001:10.244.65.132" # banco desenvolvimento
+      - "WVHB3025:10.244.66.162" # banco homologação
+      - "wvhb3035:10.244.66.162" # banco homologação 2
+      - "WVHB3035:10.244.66.166" # banco hotfix
+      - "WVTB4005:10.244.68.43" # banco teste
+      - "WVPB1016:10.244.68.52" # banco views totvs   
+      - "lvpa1032.caixars.com.br:10.244.67.148" # MAVEN repositórios 
+      - "lvpa1023.caixars.com.br:10.244.67.145" # Repositórios com SVN
+      - "svn.caixars.com.br:10.244.67.145" # Repositórios com SVN - legacy
