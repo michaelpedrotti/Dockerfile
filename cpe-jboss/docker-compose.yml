@@ -5,6 +5,7 @@ services:
     container_name: "cpe-maven"
     volumes:
       - .:/workspace
+      - cpe-repository:/root/.m2
     extra_hosts:
       - "lvpa1032.caixars.com.br:10.244.67.148" # MAVEN repositórios 
       - "lvpa1023.caixars.com.br:10.244.67.145" # Repositórios com SVN
@@ -44,4 +45,7 @@ services:
       - "WVHB3035:10.244.66.166" # banco hotfix
       - "WVTB4005:10.244.68.43" # banco teste
       - "WVPB1016:10.244.68.52" # banco views totvs
+volumes:
+  cpe-repository:
+      driver: local
 
