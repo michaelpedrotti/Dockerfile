@@ -2,14 +2,19 @@ version: "2"
 services:
   maven:
     image: "jointecnologia/cpe-maven"
+    container_name: "cpe-maven"
     volumes:
-      - ./maven-repository:/maven-repository
+      - .:/workspace
+    extra_hosts:
+      - "lvpa1032.caixars.com.br:10.244.67.148" # MAVEN repositórios 
+      - "lvpa1023.caixars.com.br:10.244.67.145" # Repositórios com SVN
+      - "svn.caixars.com.br:10.244.67.145" # Repositórios com SVN - legacy
   jboss:
     image: "jointecnologia/cpe-jboss"
     environment:
       env: dev
+    container_name: "cpe-jboss"
     volumes:
-#      - ./standalone.xml:/usr/local/jboss/standalone/configuration/standalone.xml
       - ./CPC/cpc-backend/target/cpc-backend:/usr/local/jboss/standalone/deployments/cpc-backend.war
       - ./CTT/ctt-backend/target/ctt-backend:/usr/local/jboss/standalone/deployments/ctt-backend.war
       - ./SGC_PESSOA/pessoa-backend/target/pessoa-backend:/usr/local/jboss/standalone/deployments/pessoa-backend.war
@@ -39,6 +44,3 @@ services:
       - "WVHB3035:10.244.66.166" # banco hotfix
       - "WVTB4005:10.244.68.43" # banco teste
       - "WVPB1016:10.244.68.52" # banco views totvs   
-      - "lvpa1032.caixars.com.br:10.244.67.148" # MAVEN repositórios 
-      - "lvpa1023.caixars.com.br:10.244.67.145" # Repositórios com SVN
-      - "svn.caixars.com.br:10.244.67.145" # Repositórios com SVN - legacy
