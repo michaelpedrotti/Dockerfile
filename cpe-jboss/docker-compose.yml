@@ -43,4 +43,4 @@ services:
       - "wvhb3035:10.244.66.162" # banco homologação 2
       - "WVHB3035:10.244.66.166" # banco hotfix
       - "WVTB4005:10.244.68.43" # banco teste
-      - "WVPB1016:10.244.68.52" # banco views totvs   
+      - "WVPB1016:10.244.68.52" # banco views totvs
